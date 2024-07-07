@@ -1,0 +1,9 @@
+<tr id="tr-id-{fruit.id}">
+    <th scope="row">{fruit.id}</th>
+    <td>{fruit.name}</td>
+    <td>{fruit.color}</td>
+    <td><button class="btn danger" hx-delete="/fruits/{fruit.id}"
+                hx-swap="outerHTML" hx-target="#tr-id-{fruit.id}">
+        <i class="fa fa-close"></i>Delete
+    </button></td>
+</tr>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Fruits table</title>
+    <script src="/static/htmx.min.js"></script>
+    <link href="/static/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #DDE;
+            color: #333;
+        }
+        h1 {
+            color: #4695EB;
+            font-size: 6vw;
+        }
+
+        h1 b {
+            color: #be9100;
+        }
+
+        p {
+            font-size: 2vw;
+        }
+    </style>
+</head>
+<body>
+<h1><b>Fruits</b> table</h1>
+
+<table class="table" id="fruitTable">
+    <thead>
+    <tr>
+        <th scope="col">Id </th>
+        <th scope="col">Name</th>
+        <th scope="col">Color</th>
+        <th scope="col">Action</th>
+    </tr>
+
+    </thead>
+<tbody id="fruitTable-body">
+{#for fruit in fruitList}
+        <!-- <tr><th scope="row">{fruit.id}</th> <td>{fruit.name}</td><td>{fruit.color}</td> </tr> -->
+{#include fruitRow.qute fruit=fruit}
+{/include}
+{/for}
+</tbody>
+
+</table>
+    <div id="additional-fruit"></div>
+<form name="add-fruit-form" id="addFruit">
+    <!--
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="fruit-name">Name</span>
+        </div>
+        <input type="text" class="form-control" name="name" placeholder="Fruit name" aria-label="Fruit name" aria-describedby="fruit-name">
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="fruit-color">Color</span>
+        </div>
+        <input type="text" class="form-control" name="color" placeholder="Fruit color" aria-label="Fruit color" aria-describedby="fruit-color">
+    </div> -->
+    <input type="text" class="form-control" name="name" id="name" placeholder="Fruit name" aria-label="Fruit name" aria-describedby="fruit-name">
+    <input type="text" class="form-control" name="color" id="color" placeholder="Fruit color" aria-label="Fruit color" aria-describedby="fruit-color">
+    <button hx-post="/fruits/add" hx-target="#fruitTable-body" hx-swap="beforeend"
+            hx-include="#name,#color"
+            hx-trigger="click">Add fruit</button>
+</form>
+<script src="/static/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
